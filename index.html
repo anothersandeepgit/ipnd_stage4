@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Webpage development</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+
+  	<h1>1. Webpage development using HTML and CSS</h1>
+
+   	<div class="lesson">
+    	<h2>Lesson 1.1</h2>
+
+    	<div class="concept">
+    		<div class="concept-title">1.1.1 Overview of the Internet</div>
+    		<div class="concept-description">
+				<pre>
+	--parts of the Internet: browsers, the internet, servers, and HTTP.
+	--World Wide Web consists of a number of HTML documents connected by HyperLinks.
+				</pre>
+			</div>
+    	</div>
+    	<div class="concept">
+    		<div class="concept-title">1.1.2 Introduction to HTML</div>
+   			<div class="concept-description">
+				<pre>
+	--An HTML editing tool: jsfiddle.net/WW3bh
+	--Another HTML editing tool: scratchpad.io
+				
+	--HTML markup is made of "tags" of the form: &lt;name&gt; 
+	each of which forms an "element" of the form: &lt;name&gt;contents &lt;/name&gt; 
+				
+	Some <b>tags: </b>
+				
+	<em>"inline" tag</em>: rendered inline with preceding and following text
+			&lt;b&gt;
+			&lt;em&gt; (for italics rendering)
+			&lt;a&gt; ("anchor" used for making links)
+		following 2 tags are also <em>"void"</em> tags ()don't have contents, & don't need 
+		closing tags	
+			&lt;img&gt;
+			&lt;br&gt; 
+				
+	<em>"block" element:</em> rendered in an invisible box of a given width and height
+			&lt;p&gt; (paragraph tag) - it is not a void tag, because it has contents
+			&lt;form&gt;
+				
+
+	<em>"container"</em> element (does nothing but "contain" elements): 
+			&lt;span&gt; (it is an "inline" tag)
+			&lt;div&gt; (it is a "block" tag)
+				
+
+	<b>Attributes</b> are properties of tags:
+			&lt;img href="mypic.gif" alt="mypic"&gt; (href, alt are attributes)
+			&lt;div class="myclass" &gt; (class is an attribute may be used for CSS)
+				
+
+	--multiple spaces, tabs, newline are rendered to a single space 
+				
+
+	<b>Structure</b> of a complete HTML document; So far we just saw isolated "tags":
+		&lt;!DOCTYPE html&gt;
+		&lt;html&gt;
+			&lt;head&gt;
+				...has metadata about the document, and CSS, JavaScript...
+				&lt;title&gt;...&lt;/title&gt;
+					...
+			&lt;/head&gt;
+			&lt;body&gt;
+				..."contents" of the "document" with tags; subject of 
+				this course mostly this
+			&lt;/body&gt;
+		&lt;html&gt; 
+				</pre>
+			</div>
+    	</div>
+   </div>
+
+
+   <div class="lesson">
+		<h2>Lesson 1.2</h2>
+	
+		<div class="concept">
+			<div class="concept-title">1.2.1 Creating a Structured Document with HTML</div>
+			<div class="concept-description">
+				<pre>
+	The input to webpage development is a webpage design as PDF/image file.
+	The output is the result of Frontend development which involves 
+	HTML, CSS, JavaScript. In this nanodegree we only cover HTML and CSS.
+	The browser uses HTML document to build a tree-like structure called 
+	DOM (Document Object Model), each node of which is an HTML element.
+	Every HTML element in a webpage is rendered in a rectangular area 
+	of the webpage.
+				</pre>
+			</div>
+		</div>
+		<div class="concept">
+			<div class="concept-title">1.2.2 Languages:</div>
+			<div class="concept-description">
+				<pre>
+	HTML: language for the "structure" of a webpage.
+	CSS: language for the "style" (appearance) of a webpage. 
+				</pre>
+			</div>
+		</div>
+	
+		<div class="concept">
+			<div class="concept-title">1.2.3 Tools:</div>
+			<div class="concept-description">
+				<pre>
+	Besides the languages (HTML and CSS), Tools are very important for webpage development.
+	<em>Editing tool:</em>
+		--scratchpad.io is a good editor to start development since it is easy and 
+		feedback is immediate. It can not be used to share the web page though.
+		--codepen.io is an intermediate level editing tool. It allows sharing and 
+		saving of developed webpage. We need to create an account on its web page though.
+		--Sublime Text 2 is the tool of choice for Professional webpage development.
+				
+	
+	<em>Troubleshooting/Debugging tool:</em>
+		--Chrome has very powerful "Developer Tool" that when launched from Menu appears 
+		as structure and style panels in addition to the panel where the webpage is 
+		rendered. The panels allow in-place changing of structure and style to see the 
+		effect on the resulting webpage.
+		--Developer Tool is actually a Toolbox. One of the tools in the toolbox allows 
+		inspection of structures and styles of various elements of the webpage. In the 
+		reverse direction hovering over a structural element in HTML panel highlights 
+		the box in the result panel.
+				</pre>
+			</div>
+		</div>
+		<div class="concept">
+
+			<div class="concept-title">1.2.4 Development steps:</div>
+			<div class="concept-description">
+				<pre>
+	Everything in a webpage is a box. Start development from one big box that is the 
+	entire webpage, and progressively specify details and positions of smaller boxes; 
+	each box should be defined with a "div" tag. The contents of boxes are filled next. 
+	To add style give each "div" tag a "class" attribute with informative name.
+				</pre>
+			</div>
+		</div>
+   </div>
+
+
+   <div class="lesson">
+		<h2>Lesson 1.3</h2>
+
+		<div class="concept">
+  			<div class="concept-title">1.3.1 CSS: General</div>
+  			<div class="concept-description">
+				<pre>
+	-CSS (Cascading Style Sheets)code is used to add style (appearance) to HTML elements 
+	on a webpage; "Cascading" means for each HTML element the more specific style rule 
+	ultimately applies 
+	CSS rules: 
+		&lt;selector&gt; determines the elements to which the rules apply such as 
+			"element tag": 
+			"class (ex. .description)": used for styling "many similar elements 
+				of possibly different tags". The use of class helps 
+				"avoid repetition" of CSS code. 
+			"id (#lesson1)": used to style a "unique" element; although possible to 
+				use it like a class it is not recommended. Uniqueness is also 
+				used by JavaScript.  
+				 
+		-each rule is a line of the form property:value 
+			&lt;selector&gt; { 
+				property: value; 
+				... 
+			} 
+				 
+				
+	<em>Some useful rules:</em> 
+		-"p {line-height: ...}" - controls space between consecutive lines of text
+		-"background-image: url(images/myImage.png)" 
+				
+
+	-various CSS properties are listed at: 
+		http://developer.mozilla.org/en-US/docs/Web/CSS/Reference 
+				</pre>
+			</div>
+		</div>
+		<div class="concept">
+			<div class="concept-title">1.3.2 CSS: Inheritence</div>
+			<div class="concept-description">
+				<pre>
+	an element "inherits" style rules from its parents which it can override; Browsers 
+	have default styles builtin which can be overridden.
+	--descendent elements "inherit text-relatd properties" such as: color, font, 
+	letter-spacing, line-height, list-style, txt-align, text-indent, text-transform, 
+	visibility, white-space, word-spacing
+	--descendent elements "do not inherit box-related properties": background, border, 
+	display, float and clear, height and width, margin, min/max height/width, outline, 
+	overflow, padding, position, text-decoration, vertical-align, z-index
+				</pre>
+			</div>
+		</div>
+		<div class="concept">
+			<div class="concept-title">1.3.3 CSS: The Box Model</div>
+			<div class="concept-description">
+				<pre>
+	-A "box" is basis of applying CSS rules. Boxes have 4 components (from outermost):
+		Margin: to provide space between boxes; it is transparent (no background color) 
+		Border: our size of element box with rule "box-sizing: border-box" 
+		Padding: clears an area around the content 
+		Content: 
+				
+	-div and span don't have any "default" style applied by the browsers
+	-"div" elements are for layout control and group things together; their default width 
+	is browser width; with "width: ##%" the box resizes as browser is resized, if specified 
+	as number of pixels (##px) then no box resizing happens; "max-width" is used to specify 
+	an upward bound on a resizeable box size. 				
+	-"span" elements are for decorating (styling) elements inline
+	
+	div { display: flex; } - this rule allows child elements to be placed side by side if 
+	space permits; by default "div" elements occupy entire width of the browser 
+				</pre>
+			</div>
+		</div>
+		<div class="concept">
+			<div class="concept-title">1.3.4 Web Development Process:</div>
+			<div class="concept-description">
+				<pre>
+	-First structure a webpage; look for natural boxes from Design document (a pdf or 
+	a graphic file), then needed HTML tags, followed by sizing and positioning the boxes; 
+	the result is a layout
+	-look for repeated styles and semantic elements (choose the right tag based on its 
+	purpose on the webpage) 
+	-write HTML 
+	-apply styles (from biggest to smallest boxes) 
+	-Fix issues 
+	-all resources of a webpge should be at or below the root folder of webpage/site 
+	-Developer Tools helps in refinement by allowing experimentation with immediate 
+	visual feedback
+	-"* { outline: 1px solid red}" CSS rule puts boxes around elements which can be a 
+	visual feedback during development 
+	-Verify HTML: http://validator.w3.org/#validate_by_input 
+	-verify CSS: http://jigsaw.w3.org/css-validator/#validate_by_input 
+				</pre>
+			</div>
+		</div>
+
+   	</div>
+
+
+<h1>2. Python Programming</h1>
+
+   	<div class="lesson">
+    <h2>Lesson 2</h2>
+		
+		<div class="concept">
+			<div class="concept-title">
+				2.1 Python notes: Basic
+			</div>
+			<div class="concept-description">
+				<pre>
+	<h3>Python related sites</h3>				
+	http://google-styleguide.googlecode.com/svn/trunk/pyguide.html 
+	http://learnpythonthehardway.org/book/
+
+	<h3>Miscellaneous web site of interest</h3>
+	http://www.wdyl.com/profanity?q=shot(this website will help detect curse words 
+	in a text)
+	http://isithackday.com/arrpi.php?text=friend(this website will convert normal 
+	text into Pirate speech)
+
+
+	#Python comment (as well as long string declaration)
+	'''LONG STRING		# very long string declaration
+			VERY LONG TO FIT IN A LINE
+		AND EVEN TO PRESERVE SPACES
+	'''
+	&lt;string&gt; * #   	: the string is repeated "#" number of times
+	&lt;string&gt; + #   	: ****WRONG**** instead =&gt; &lt;string&gt; + str(#)
+	&lt;string&gt;[#]    	: "#"th character in the string
+	&lt;string&gt;[-1]   	: LAST character in the string
+	&lt;string&gt;[#begin: #end: #step] : extended-slicing of string
+	&lt;string&gt;[#1 : #2] : slice of string starting from #1 and ending JUST-BEFORE #2
+	&lt;string&gt;[#:]   	: slice starting from # to ending
+	&lt;string&gt;[:#]   	: from beginning to #
+	&lt;string&gt;.find("string_to_find") 	: position of 1st occurrence
+	&lt;string&gt;.replace(replacee, replacer): replace replacee with replacer
+	&lt;string&gt;.lower() : 
+	&lt;string&gt;.isdigit()     #true IFF all of the string is digits
+	&lt;string&gt;.split("SEPARATOR") : returns a list
+	&lt;string&gt;.split()	: uses default separator (" ")
+	&lt;SEPARATOR&gt;.join(&lt;LIST&gt;)	:returns a string by joining members of list 
+		using separator
+	"Hello {0}, {1}".format("STRING0", "STRING1")
+				</pre>
+			</div>
+		</div>
+
+		<div class="concept">
+			<div class="concept-title">
+				2.2 Python notes: Advanced
+			</div>
+			<div class="concept-description">
+				<pre>
+	a=56
+	b=345
+	"This is a %s and %s number" %(a, b) # output will be: This is a 56 and 345 number
+	"I'm %(nickname)s. My real name is %(name)s, but my friends call me %(nickname)s." 
+		%{"name": name, "nickname": nickname}
+	--
+
+	for (i, o) in (("&", "&amp;amp;"), ("&gt;", "&amp;gt;"), ("&lt;", "&amp;lt;"), ('"', "&amp;quot;")):
+        s = s.replace(i, o)
+	return s
+
+	--
+
+	my_dictionary = {"a_value": "Sandeep", "b_value": "Prasad"}
+	"Hello {a_value}, {b_value}".format(**my_dictionary)
+
+	*a : is a way of passing "list" or "tuples" used in function parameters 
+		(seen in webapps)
+	**kw : is a way of passing "dictionary" used in function parameters 
+		(seen in webapps)
+
+	---------
+
+	&lt;DICTIONARY&gt; = {"KEY":"VALUE", ...} # key="string" or number or "tuple"; 
+						value=&lt;any data type&gt;
+	"tuple" = (1, 2 "amy")
+	&lt;key&gt; has to be "immutable" (ex. "list" is NOT immutable so can't be a key)
+	&lt;key&gt; in &lt;DICTIONARY&gt;  # returns True if &lt;key&gt; is one of the 
+						keys in &lt;DICTIONARY&gt;
+	&lt;DICTIONARY&gt;[key_that_doesn't_exist] ---&gt;causes CRASH 
+	&lt;DICTIONARY&gt;.get(key_that_doesn't_exist)---&gt; returns "None"
+	new key/value pair can be added to an existing DICTIONARY 
+		(no need to declare size of DICTIONARY)
+
+	&lt;my DICTIONARY&gt;.keys() #returns a list of keys
+
+	---------
+
+	&lt;LIST_NAME&gt; = [] : creates an EMPTY list ***lists elements can be of mixed-types
+	&lt;LIST_NAME&gt; = [0] * 11	: create a list with 11 elements each of value 0
+	&lt;LIST3&gt; = &lt;LIST1&gt; + &lt;LIST2&gt;
+	&lt;LIST3&gt; += &lt;LIST2&gt;
+	&lt;LIST&gt;[#] 		: element at # index of the list
+	&lt;LIST&gt;[#start, #(end+1)] : slice of list
+	&lt;LIST&gt;.index(&lt;VALUE&gt;) 	: returns index at which the value element is in 
+		the list or ERROR
+	&lt;VALUE&gt; in &lt;LIST&gt;
+	not &lt;VALUE&gt; in &lt;LIST&gt;
+	&lt;VALUE&gt; not in &lt;LIST&gt;
+	&lt;LIST_NAME&gt;.append(&lt;ELEMENT&gt;)
+	len(&lt;string&gt;)	: length of string
+	len(&lt;LIST OR ANY COLLECTION&gt;) : number of elements in the collection
+
+	id(a)			: to see if actual object is same or different
+	range(#)		: generates a list of number from 0 to (#-1)
+	range(#1, #2)   : generates a list of number from #1 to (#2 - 1)
+	str(#)			: function to convert # to string
+	type(&lt;VAR_NAME&gt;): outputs the type of variable
+	raw_input(&lt;PROMPT_STRING&gt;) : return string input by user
+	assert &lt;LOGICAL_EXPRESSION&gt;
+
+	#open("...") is in its own space (builtin) inside Python Standard Library
+	#"builtin" docs at: https://docs.python.org/2/library/functions.html
+	file_ref = open("file_path_name") #open("...") returns an "object"
+	file_ref.read()
+	file_ref.close()
+
+	#to ignore non-ASCII unicode characters in a string
+	unicode(&lt;input_string&gt;, errors="ignore") 
+				</pre>
+			</div>
+		</div>
+
+		<div class="concept">
+			<div class="concept-title">
+				2.3 Python notes: Code Snippets
+			</div>
+			<div class="concept-description">
+				<pre>
+	try:
+		&lt;CODE&gt;
+	except: AssertionError:
+	--------
+	def test():
+		assert &lt;FUNCTION_CALL&gt; == &lt;EXPECTED_RESULT&gt;
+		...
+		print "Test Passed"
+	
+	-------------------------------------
+	from random import randint    
+	randint(&lt;LOW#&gt;, &lt;HIGH#&gt;)
+	-------------------------------------
+	def FUNC_NAME(PARAM1, PARAM2,...):
+		&lt;CODE&gt;
+		return VAL1, VAL2, ...
+	-------------------------------------	
+	VAR1, VAR2, VAR3 = VAL1, VAL2, VAL3   : multiple var assignment
+
+	print &lt;string&gt;
+	-------------------------------------
+	if &lt;TEST_CONDITION1&gt; or &lt;TEST_CONDITION2&gt;:
+		&lt;CODE&gt;
+	elif:
+		&lt;CODE&gt;
+	else:
+		&lt;CODE&gt;
+	-------------------------------------
+	while &lt;TEST_CONDITION1&gt; or &lt;TEST_CONDITION2:
+		&lt;CODE&gt;
+		if &lt;TEST_CONDITION1&gt; or &lt;TEST_CONDITION2&gt;:
+			break
+	--------------------------------------
+	for &lt;ELEMENT&gt; in &lt;LIST&gt;:
+		&lt;CODE&gt;
+	--------------------------------------
+
+	Named tuple:
+	Link = namedtuple('Link', ['id', 'submitter_id', 'submitted_time', 'votes',
+                      'title', 'url'])
+	links = [
+		Link(0, 60398, 1334014208.0, 109,
+			"C overtakes Java as the No. 1 programming language in the TIOBE index.",
+			"http://pixelstech.net/article/index.php?id=1333969280"),
+		Link(1, 60254, 1333962645.0, 891,
+			"This explains why technical books are all ridiculously thick 
+			and overpriced",
+			"http://prog21.dadgum.com/65.html")
+		]
+	# note two equivalent ways of accessing data-types
+	links[1][3] = 891  
+	links[1].votes = 891  
+
+	#"lambda" functions are anonymous functions that return the value of the expression
+	links.sort(key = lambda x: x.submitted_time, reverse=True) 
+			#sorts according to key=submitted_time
+				</pre>
+			</div>
+		</div>
+
+
+		<div class="concept">
+			<div class="concept-title">
+				2.4 Python notes: Python Standard Libraries
+			</div>
+			<div class="concept-description">
+				<pre>
+	https://docs.python.org/2.7/library
+
+	---
+	import cgi
+	cgi.escape(&lt;source_string&gt;, quote = True)
+	---
+	use json
+	#to convert a JSON string into python data-types
+	data_movies = json.loads(movies_json)
+
+	---
+	import os
+	os.listdir(r"C:\career_udacity\Intro2PrgNanodegree\stage_2\prank")
+	os.getcwd()
+	os.chdir(r"C:\career_udacity\Intro2PrgNanodegree\stage_2\prank")
+	os.rename(file_name, file_name.translate(None, "0123456789"))
+	os.path.dirname(__file__)  #current directory where the executing file resides
+	---
+	import webbrowser
+	webbrowser.open("https://www.youtube.com/watch?v=igWt_WnqmUw")
+	---
+
+	import times
+	time.ctime()
+	time.sleep(10)
+	---
+	import urllib
+	connection = urllib.urlopen("http://www.cnn.com")
+	output = connection.read()
+	connection.close()
+				</pre>
+			</div>
+		</div>
+
+		
+	</div>
+
+<h1>3. Object Oriented Python Programming</h1>
+
+   	<div class="lesson">
+    <h2>Lesson 3</h2>
+
+    <div class="concept">
+			<div class="concept-title">
+				3.1 Python notes: Python Standard "Class" libraries
+			</div>
+			<div class="concept-description">
+				<pre>
+	import turtle  # imports from file "turtle.py" a class: Turtle
+	window = turtle.Screen()
+	window.bgcolor("red")
+
+	brad = turtle.Turtle()
+	brad.shape("turtle")
+	brad.color("Yellow")
+	brad.speed(".1")
+	brad.forward(100)
+	brad.right(90)
+	--------------------
+	DOS_PROMPT&gt; pip install twilio
+
+	import twilio
+	print(twilio.__version__)
+
+	--
+	#from twilio installation's folder "rest" import "Class" TwilioRestClient
+	from twilio.rest import TwilioRestClient  
+	#instantiate by calling "def __init__()" in "class" TwilioRestClient
+	client = TwilioRestClient(&lt;account_sid&gt;, &lt;auth_token&gt;)
+	message = client.sms.messages.create(
+				body="...", to="+17816634538", from_="TwilioPhone#")
+	print message.sid
+				</pre>
+			</div>
+		</div>
+
+		<div class="concept">
+			<div class="concept-title">
+				3.2 Python notes: Class Design
+			</div>
+			<div class="concept-description">
+				<pre>
+	&lt;Filename: media.py&gt;
+	import webbrowser
+
+	class Movie():
+		''' This class provides a way to store movie related information'''
+		VALID_RATINGS = ["G", "PG", "PG-13", "R"]
+	
+		def __init__(self, , movie_title, movie_storyline, poster_image, trailer_youtube):
+			self.title  = movie_title
+			self.storyline  = movie_storyline
+			self.poster_image_url  = poster_image
+			self.trailer_youtube_url  = trailer_youtube
+		
+		def show_trailer(self):
+			webbrowser.open(self.trailer_youtube_url)
+
+	# custom class-variable defined in the class 
+	print media.Movie.VALID_RATINGS
+
+	#"default" class-variables defined in Python
+	print media.movie.__doc__
+	print avatar.__module__
+	print avatar.__class__.__module__
+
+	????Find out if this (use of __)just a "CONVENTION" or language-feature
+	??"__" before a variable or Method implies "private" 
+	?? to the class file, and should not be used outside
+
+	----------------
+	Inheritence and Method-overriding:
+
+	class Parent():
+		
+		def __init__(self, last_name, eye_color):
+			print("Parent Constructor Called")
+			self.last_name = last_name
+			self.eye_color = eye_color
+
+		def show_info(self):
+			print("Last Name - " + self.last_name)
+			print("Eye Color - " + self.eye_color)
+
+	class Child(Parent):
+		def __init__(self, last_name, eye_color, number_of_toys):
+			print("Child Constructor Called")
+			Parent.__init__(self, last_name, eye_color)
+			self.number_of_toys = number_of_toys
+
+		def show_info(self):
+			print("Last Name - " + self.last_name)
+			print("Eye Color - " + self.eye_color)
+			print("Number of toys - " + str(self.number_of_toys))
+
+	billy_cyrus = Parent("CyrusSenior", "blue-brown")
+	billy_cyrus.show_info()
+	miley_cyrus = Child("Cyrus", "Blue", 5)
+	print miley_cyrus.last_name
+	print miley_cyrus.number_of_toys
+	miley_cyrus.show_info()
+				</pre>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+<h1>4. Python: Server Side Programming</h1>
+
+   	<div class="lesson">
+    	<h2>Lesson 4</h2>
+
+    	<div class="concept">
+    		<div class="concept-title">
+				4.1 Overview of the Networks
+			</div>
+    		<div class="concept-description">
+				<pre>
+	Definition: Network is a group of entities (humans, computers, etc) that can 
+	communicate even when they are all not directly connected. Communication relies
+	on message forwarding by intermediate entities.
+
+	Message forwarding may be by flooding the network (sending messages to all nodes)
+	or some other algorithm.
+
+	Factors in network implementation: 
+		message protocol - how server/client entities interact (ex. HTTP GET/POST)
+		message priority (resource use rules ex: internet's best effort policy)
+		encoding/decoding of messages
+		routing of messages (router rules)
+
+
+	Network performance parameters:
+		Latency (startup time usually in milliseconds)
+		Bandwidth (information transfer rate usually in bits/sec or Mbps)
+
+	a website to test network performance: www.cnet.com/internet-speed-test
+
+
+
+	HTTP URL: 
+		&lt;protocol&gt;://&lt;host&gt;:&lt;port&gt;/&lt;path&gt;?&lt;GET/query parameter=values>#&lt;fragment&gt;
+	#fragment is interpreted by browser; not sent to server
+	spaces in query replaced by '+'; some other chars replaced with their unicode
+	browser generates HTTP request after establishing connection with host:
+	GET /&lt;path&gt;??&lt;GET/query parameter=values&gt;  HTTP/1.1(or 1.0)
+	followed by headers: 
+			Host: &lt;hostname&gt;   (required in 1.1 not in 1.0; specifies a site
+						since a server can host multiple websites)
+			User-Agent: &lt;chrome, etc&gt; (courtesy for server to implement policies)
+			***Users can add their own Headers too.
+
+			
+	server sends HTTP Response:
+		status line:&lt;protocol/version> &lt;response code&gt;   &lt;response phrase&gt;
+				HTTP/1.1  200  OK    
+			some status codes: 
+					200 -&gt; OK -&gt; document found (2XX means success)
+					302 -&gt; Found -&gt; document located elsewhere
+					 (3XX means to find doc some other step needed)
+					404 -&gt; Not Found -&gt;  (4XX error from client side)
+					500 -&gt; Server Error  (5XX means server side error)
+		followed by mandatory, optional, and user-added headers:
+				Date: 
+				Server: &lt;optional but to be avoided to prevent hacking&gt;
+				Content-Type: image/jpeg  (to help browser handle content)
+				Content-Length: (optional)
+
+				</pre>
+			</div>
+    	</div>
+		<div class="concept">
+    		<div class="concept-title">
+				4.2 Dynamic Contents for Browser
+			</div>
+    		<div class="concept-description">
+				<pre>
+	Dynamic contents generated by 'Web Applications'; static contents pre-written
+
+	Forms in HTML:
+	
+	&lt;form action={"/foo"; URL, without action form submits to its own URL}&gt;
+	  &lt;label&gt;Label for enclosed form element
+		&lt;input type={"text" is default; password; submit results in a submit button;
+						"radio"; checkbox (default "off" else "on")} 
+				name="ip" value="ipValue"&gt;
+		&lt;select name="q"&gt;    (renders dropdown for selection)
+			&lt;option value="1"&gt;rendered_one&lt;/option&gt;
+			...
+		&lt;/select&gt;
+	  &lt;/label&gt;
+	&lt;/form&gt;
+	
+	if default value not changed then some form elements are not sent to server
+				</pre>
+			</div>
+    	</div>
+		
+				<div class="concept">
+    		<div class="concept-title">
+				4.3 Best Practice in webapp
+			</div>
+    		<div class="concept-description">
+				<pre>
+	After a successful POST handling 'redirect' to a separate page else may re-POST
+	GET:
+		should not change server; ok to cache (controlled through request header);
+		used for fetching docs; include form data in URL; max URL length limitation
+	POST:
+		change server; for updating data; not ok to cache; 
+		no max length unless server configured
+				</pre>
+			</div>
+    	</div>
+		
+		<div class="concept">
+    		<div class="concept-title">
+				4.4 Python notes of helpful constructs
+			</div>
+    		<div class="concept-description">
+				<pre>
+	Python notes:
+
+	True/False in Python can be implied by variable values	
+		&quot;empty&quot; string/list/dictionary/tuple are &quot;False&quot; else &quot;True&quot; 
+	string = 'hello'
+		string.capitalize() //capitalizes 1st letter of the string
+		string.isdigit() //True if the string is a number
+		String substitution: (format string = original string)
+			&quot;&lt;b&gt;%s&lt;/b&gt;&quot; % replacement_string
+			&quot;.....%s.......%s&quot; % (var1, var2)
+			&quot;....%(NAME)s....%(CITY)s&quot; % {'NAME' : 'USA', 'CITY' : 'Boston'}
+			
+			import cgi
+			cgi.escape(string, quote=True) #
+				to substitute &lt;, &gt;, &amp;, &quot; (if quote=True)
+			
+			error string can be added in forms as follows:
+			&lt;div style='color : red'&gt;%(error)s&lt;/div&gt;
+			
+	list = ['alpha', 23]
+	dictionary = {'hydrogen' : 1, 'helium' : 2}
+	element value in each case can be accessed by index or key within []
+	'lithium' in dictionary  (will return False here; True if it were in it)
+	dictionary['lithium'] = 3; list[2] = [1, 'hi'] will create a new element
+	complex element: list[2][1] which will be 'hi' here
+	
+	month_fullname_list = [&lt;list of full names of months&gt;]
+	month_abbreviation_dictionary = dict(m[:3].lower(), m) for m in month_fullname)
+	
+	Tuple: is an immutable List with defined 0-based order;elements enclosed within ()
+		can be a key in a Dictionary because it is &quot;immutable&quot; 
+		(results in same hash value)
+	to remove a tuple: del &lt;tuple_name&gt;
+
+
+	Named Tuple:
+		similar to a &quot;class&quot;, BUT attributes once set can not be changed
+		ex:
+		from collections import namedtuple
+		Point = namedtuple('Point', 'x y z')    //definition of named tuple
+		p1 = Point(3, 6, 8)	//an instance of above namedtuple
+		p1.x is same as p1[0]   //alternate ways of accessing elements
+		ps = [p1, p2, p3, ...]
+		ps.sort(key = lambda a:a.y) 
+			#will sort the list of named tuples based on y-values
+
+
+	Python list comprehension:	
+		list0 = [t[0] for t in c] 
+			#c is a list of tuples; result is a list of first elements
+		
+	Optional parameters in Python functions (by providing default value:
+		def write_form(self, errors = &quot;&quot;):
+
+	
+	function_definition(*a, **kw) 
+			#*a =&gt;params by order; **kw =&gt;dictionary of named params
+	# *a : a way of passing &quot;list&quot; or &quot;tuples&quot; 
+		used in function parameters (seen in webapps)
+	#**kw : a way of passing &quot;dictionary&quot; 
+		used in function parameters (seen in webapps)
+	ex:
+		def some_func (p1, p2):
+			...
+		some_func (1, 2)   //call to above function_definition
+		or:
+		pl = [1, 2]
+		some_func (*pl)
+		pt = (1, 2)
+		some_func(*pt)
+		some_func(p2=3, p1=7)  
+			#despite different order, will pass p1 to p1 and p2 to p2
+		pdict = {&quot;p1&quot; : 5, &quot;p2&quot; : 3}
+		some_func(**pdict)   
+			#VERY IMP: this form allows variable number of params
+				</pre>
+			</div>
+    	</div>
+
+		<div class="concept">
+    		<div class="concept-title">
+				4.5 Google App Engine (GAE)
+			</div>
+    		<div class="concept-description">
+				<pre>
+	****Google App Engine wants &quot;All Lowercase&quot; for AppName
+	https://cloud.google.com/appengine/downloads
+
+	click: Download the App Engine SDK --&gt; Google App Engine SDK for 
+		Python download: GoogleAppEngine-1.9.28.msi
+		it needs Python 2.7 installed
+		clicking it installs Google App Engine to the following default:
+	C:\Program Files (x86)\Google\google_appengine\
+	At the end of installation: click &quot;Run Launcher&quot;
+		if successful, install successful
+		
+	To get a hang of Google App Engine:
+	Products--&gt;Documentation--&gt;App Engine--&gt;Python--&gt;Python Tutorial
+		try &quot;Hello World!&quot; tutorial
+		
+
+	create a file 
+		&quot;helloworld.py&quot; 
+		import webapp2 #a simple Web Application framework included in GAE	
+		#is already installed in App Engine Environment AND App Engine Python SDK
+		# has 2 parts
+		#PART-1: RequestHandler classes that process Requests &amp; build Responses
+		...
+		#PART-2: WSGIApplication instance to route incoming Requests to Handlers 
+			based on URL
+		app = webapp2.WSGIApplication([(&quot;/&quot;, MainPage),(&quot;/addblogentry&quot;, AddHandler)],
+				debug=TRUE) #debug... should be removed from Production
+		#WSGI =&gt;Web Server Gateway Interface
+		
+		and &quot;app.yaml&quot; (Configuration file with YAML syntax)
+			besides other entries, to specify static files add the following 
+			types of lines:
+				handlers:
+				- url: /favicon\.ico
+				static_files: favicon.ico
+				upload: favicon\.ico
+
+		in the same folder
+
+		admin Desktop $ dev_appserver.py helloworld/
+
+	***Deploying &quot;helloworld&quot; App locally and starting the server:
+	$ &quot;C:\Program Files (x86)\Google\google_appengine\dev_appserver.py&quot; helloworld/
+	Allow dev_appserver to check for updates on startup? (Y/n): n
+	dev_appserver will not check for updates on startup.  To change this setting, 
+			edit c:/Users/lendevsanadmin/.appcfg_nag
+	WARNING  2015-11-04 12:52:23,596 simple_search_stub.py:1126] 
+		Could not read search indexes
+	from c:\users\lendev~1\appdata\local\temp\appengine.None\search_indexes
+	INFO     2015-11-04 12:52:23,609 api_server.py:205] Starting API server at: 
+	http://localhost:57750
+	INFO     2015-11-04 12:52:23,614 dispatcher.py:197] Starting module &quot;default&quot; 
+		running at:
+	http://localhost:8080
+	INFO     2015-11-04 12:52:23,625 admin_server.py:116] Starting admin server at: 
+	http://localhost:8000
+	
+	
+	
+	after this from browser access URL: localhost:8080 
+	(this will bring up a web page with output &quot;Hello World!&quot;)
+	======================================================================
+	Using Google App Engine &quot;launcher&quot; to run helloworld application:
+
+	*******Tutorial at Google App Engine website has a BUG because of which 
+	*******Add Existing Application fails. The solution is to add the following
+	*******line to the top of &quot;app.yaml&quot; file:
+	*******  application: helloworld
+	======================================================================
+
+	remove &quot;debug=true&quot; from .py file in webapp before deployment
+	self.request =&gt; Python request object
+				.get(&lt;string&gt;) //to get parameter value from request
+	self.response =&gt; Python response object
+				 .out.write(&lt;string&gt;) #to send output to browser
+				 .headers['Content-Type'] = 'image/jpeg'  
+					#to set response headers
+				 
+	405 Method Not Allowed : error seen if we forget to implement 
+		a Method (get/post)/..
+	self.redirect(&quot;/thanks&quot;)
+	
+	Troubleshooting tips:
+	# print &quot;###&quot; # These hash marks helps us locate our print statement  
+			# from the rest of the messages Google App Engine gives us
+             
+	# print template_dir
+	# print &quot;###&quot;
+
+	# For Windows Users, you need to add in a logging flag for GAE to print out your
+	# statements appropriately. Download the &quot;Google App Engine Troubleshooting&quot;
+	# guide to learn how to add in the logging flag at the following URL:
+	# https://www.udacity.com/course/viewer#!/c-nd000/l-4166899177/m-3974308850
+				</pre>
+			</div>
+    	</div>
+		<div class="concept">
+    		<div class="concept-title">
+				4.6 HTML Templates
+			</div>
+    		<div class="concept-description">
+				<pre>
+	helps avoid repetition in HTML
+	More articles/docs for HTML Templates:
+		https://realpython.com/blog/python/primer-on-jinja-templating/
+		https://cloud.google.com/appengine/docs/python/gettingstartedpython27/templates
+		http://jinja.pocoo.org/docs/dev/
+	jinja2 
+		- template engine/library builtin to Google App Engine (jinja.pocoo.org)
+		- used to generate/render HTML string
+		
+		-needs to be specified in app.yaml under &quot;libraries:&quot; section
+		-name: jinja2
+		version: latest
+			 
+		- in app.py
+		import jinja2
+		import os
+		template_dir = os.path.join(os.path.dirname(__file__), 'templates')
+		jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir))
+			//2nd arg above for global auto HTML escaping:  autoescape=True
+			//thereafter to specifically disable escaping:   {{ item | safe}}
+		template = jinja_env.get_template(&lt;template_file_name&gt;.html)
+		template.render(params)  //substitute &quot;params&quot; in templat code
+			
+	Syntax for Jinja template:
+		although Jinja2 allows complex code; 
+		minimize =&gt; code in HTML-tempates OR HTML in .py-code
+		variable substitution:  {{ variable_name }}  
+					#like &quot;print&quot; but ignored if undefined
+		statement syntax (general form):
+			{% statement %}
+				--output--
+			{% endstatement %}
+		ex: 
+			{% if name == &quot;myname&quot; %}
+				--my output--
+			{% elif name == &quot;yourname&quot; %}
+				--your output--
+			{% else %}
+				--other output--
+			{% endif %}
+			-----------------------------------
+			{% for item in items %}   # or {% for item in range(, n) %}...
+				&lt;li&gt;{{ item }}
+			{% endfor %}
+			{{ item | escape }} 	
+				# to escape &quot;&amp;lt;, &amp;gt;, &quot;, &amp;&quot; in the variable item
+			{{variable | safe}}     # to leave HTML in variable alone
+			template inheritence: //child.html derives from a base.html
+			base.html	
+				&lt;html&gt;
+				...
+				&lt;body&gt;
+				...
+					{% block somecontent %}
+					{% endsomeblock %}
+				...
+				&lt;/body&gt;
+				&lt;/html&gt;
+			child.html
+				{{% extends &quot;base.html&quot; %}}
+				{{% block somecontent %}}
+					--some HTML tags--
+				{{% endsomeblock %}}
+				
+			then in .py file load and use &quot;base.html&quot;
+				<pre>
+			</div>
+    	</div>
+		
+		<div class="concept">
+    		<div class="concept-title">
+				4.7 Databases
+			</div>
+    		<div class="concept-description">
+				<pre>
+	program/machine/system-of-machines that stores/retrieves a large amount of 
+		structured data
+	SQL/Relational 
+	 PostgreSQL(reddit, hipmunk), mysql/most-popular(facebook); 
+	 sqlite (lightweight replacement for flat-file), Oracle
+	NoSQL (ex. Google App Engine Datastore; Amazon Dynamo; Mongo; Couch)
+					
+	SQL: language for expressing queries (invented in 1970s)
+		
+		import sqlite3
+		db = sqlite3.connect(':memory:')   #creates an in-memory DB
+		cursor = db.execute(query-string)#ex. query-string = 'select * from mytable'
+		//cursor is a list of tuples
+		cursor.fetchall() OR cursor.fetchone()  OR 'for mytuple in cursor:'
+		
+		JOINS not used in webapplications much
+		
+		INDEX for fast lookup performance constant time(
+				based on hash table, so not sorted)
+			to speed up queries/lookups at expense of a little slow down of writes
+			create index hotel_id on hotels(id) //TABLE=hotels; FIELD=id;   
+			drop index hotel_id; 
+			
+		INDEX for fast sorting ('tree') (lookups performance are log-n) 
+			#good for 'order by'
+		
+	ACID: 
+		Atomicity: All parts of a transaction pass/fail together 
+		Consistency: all tables will be in a valid state 
+		Isolation: no transaction can interfere with another; locking used to ensure
+		Durability: even if DB crashes, once a transaction is committed it 
+			won't be lost
+				</pre>
+			</div>
+    	</div>
+		
+		<div class="concept">
+    		<div class="concept-title">
+				4.8 Google App Engine Datastore:
+			</div>
+    		<div class="concept-description">
+				<pre>
+	It is a NoSQL database; good for scalability
+	for practice: https://cloud-playground.appspot.com/playground/
+	documentation: https://cloud.google.com/appengine/docs/python/ndb/
+	Entities (equivalent of Relational DB &quot;tables&quot;) 
+			- each has a &quot;key&quot; and &quot;id&quot;(int/string)
+	number of columns of each entry can be different (fixed size in Relational DB)
+	Entities can have Parent-Child relationship (for Consistency of stored data)
+	stores &quot;objects&quot; (1 object is like 1 row in Relational DB)
+	each object has &quot;attributes&quot; (1 attribute is like 1 column of relational DB)
+	&quot;Filter&quot; is like search criteria in relational DB.
+	
+	ex:
+	from google.appengine.ext import ndb  #python Datastore API; helps create objects
+	#GAE provides several services based on Google infrastructure
+	#accessible by Applications using libraries included with GAE Python SDK, 
+	#one such service &quot;users&quot; service for users to use Google accounts to 
+	#sign-in to our Application
+	from google.appengine.api import users 
+	
+	class Blogentry(ndb.Model):
+		comment = ndb.StringProperty()
+		username = ndb.StringProperty()
+		date = ndb.DateTimeProperty(auto_now_add=True)
+		
+	user = users.get_current_user()#from users service; returns &quot;user&quot; object or None
+	if user:
+            url = users.create_logout_url(self.request.uri)  #creates Logout URL
+            url_linktext = 'Logout' + &quot; (&quot; + user.nickname() + &quot;)&quot;
+        else:
+            user = &quot;Anonymous&quot;
+            url = users.create_login_url(self.request.uri)#creates URL for GAE Login page
+            url_linktext = 'Login (Optional)'
+	be = Blogentry(comment = &quot;some comment, username = user)
+	be.put()   # needs some time for Datastore to update, so follow with 
+				# import time    
+				#time.sleep(.1)
+	
+	query = Blogentry.query().order(-Blogentry.date) 
+			#&quot;-&quot; before &quot;Blogentry.date&quot; =&gt; desc
+	be_list = query.fetch()		
+			#returns a list of tuples; each tuple is an object(row)
+			#query.fetch(5) to restrict to 5 results
+			
+	Troubleshooting GAE Datastore:
+	the Datastore is stored in local filesystem as binary files
+	find the &lt;admin-port&gt; for the webapp from GAE Launcher
+	point the browser to http://localhost:&lt;admin-port&gt;
+		# it brings up GAE console/dashboard with Datastore instance ID
+	click on &quot;Datastore Viewer&quot; to see different &quot;Entities&quot; and &quot;Objects&quot;; 
+	delete possible
+				</pre>
+			</div>
+    	</div>
+	</div>
+	
+  </body>
+</html>

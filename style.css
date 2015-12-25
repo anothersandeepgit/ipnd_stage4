@@ -1,0 +1,35 @@
+
+body {
+	font-family: helvetica;
+}
+h1 {
+	text-align: center;
+	color: #294860;
+}
+.lesson {
+	background-color: #294860;
+	border-radius: 20px;
+	padding: 10px;
+	color: white;
+
+}
+h2 {
+	margin: 10px;
+}
+.concept {
+	background-color: #DFEAF1;
+	margin: 10px;
+	padding: 4px;
+	border-radius: 4px;
+	color: black;
+}
+.concept-title {
+	font-size: 20px;
+	margin: 8px;
+	text-align: center;
+	color: #294860;
+}
+.concept-description {
+	font-weight: lighter;
+	margin: 6px;
+}
