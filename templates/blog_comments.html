@@ -1,0 +1,34 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+		<form method="post" action=/addblogentry>
+			{% if errors != "" %}
+				<div style="color: red">{{ errors }}</div>
+			{% endif %}
+			<div>
+				<textarea name="content" rows="4" cols="60" ></textarea>
+			</div>
+			
+			<input type="submit" value="Submit Comment">
+			<br><br>
+			<a href="{{ url|safe }}">{{ url_linktext }}</a>
+			<br>
+				
+		</form>
+
+		<hr>
+		<br>
+
+		<table border="1"><th>User Name</th><th>Comment</th></tr>
+			{% for entry in entries %}
+
+				<tr>
+					<td>{{ entry.username | escape }}</td>
+					<td><blockquote>{{ entry.comment | escape }}</blockquote></td>
+				</tr>
+
+			{% endfor %}
+		</table>
+{% endblock %}
