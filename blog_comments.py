@@ -19,73 +19,66 @@ class Blogentry(ndb.Model):
     date = ndb.DateTimeProperty(auto_now_add=True)
         
 
-class Handler(webapp2.RequestHandler):
-    def write(self, **kw):
-        self.response.out.write(**kw)
-
-    def render_str(self, template, **params):
-        print "in render_str"
-        t = jinja_env.get_template(template)
-        return t.render(params)
-
-    def render(self, template, **kw):
-        print "in render"
-        self.write(self.render_str(template, **kw))
-
-
-class MainPage(Handler):
+class MainPage(webapp2.RequestHandler):
     def get(self):
-        global errors
-        user = users.get_current_user()
+        page2get = self.request.GET.getall('display_page')
 
-        if user:
-            # self.response.headers['Content-Type'] = 'text/html; charset=utf-8'
-            # self.response.write('Hello, ' + user.nickname())
-            url = users.create_logout_url(self.request.uri)
-            url_linktext = 'Logout' + " (" + user.nickname() + ")"
+        if page2get and page2get[0] == 'comments':
+            global errors
+            user = users.get_current_user()
+
+            if user:
+                url = users.create_logout_url(self.request.uri)
+                url_linktext = 'Logout' + " (" + user.nickname() + ")"
+            else:
+                url = users.create_login_url(self.request.uri)
+                url_linktext = 'Login (Optional)'
+
+            query = Blogentry.query().order(-Blogentry.date)
+            be_list = query.fetch()
+
+            errors = self.request.get('errors')
+            
+
+            template_values = {
+                'errors' : errors,
+                'user' : user,
+                'entries' : be_list,
+                'url' : url,
+                'url_linktext' : url_linktext
+            }
+            display_page = "blog_comments.html"
         else:
-            # self.redirect(users.create_login_url(self.request.uri))
-            url = users.create_login_url(self.request.uri)
-            url_linktext = 'Login (Optional)'
-
-        query = Blogentry.query().order(-Blogentry.date)
-        be_list = query.fetch()
-
-        errors = self.request.get('errors')
-        template_values = {
-            'errors' : errors,
-            'user' : user,
-            'entries' : be_list,
-            'url' : url,
-            'url_linktext' : url_linktext
-        }
-        
-        
-        # self.render("blog_comments.html", entries = be_list)
-        # self.render("blog_comments.html", template_values = template_values)
-        t2 = jinja_env.get_template("blog_comments.html")
+            template_values = {}
+            display_page = "notes.html"
+            
+        t2 = jinja_env.get_template(display_page)
         self.response.write(t2.render(template_values))
 
-class AddHandler(Handler):
+class AddHandler(webapp2.RequestHandler):
     def post(self):
         current_comment = self.request.get('content')
+        current_comment = current_comment.strip()
         user = users.get_current_user()
+
         if user:
             current_user = user.nickname()
         else:
             current_user = "Anonymous"
+
         if current_comment == "":
             errors = "Empty comment submitted!"
-            redirect_url = "/?errors=" + errors
-            self.redirect(redirect_url)
+            redirect_url = "/?display_page=comments&errors=" + errors
         else:    
             be = Blogentry(comment = current_comment, username = current_user)
             be.put()
-            time.sleep(.1)
-            self.redirect("/")
+            delay = 0.1
+            time.sleep(delay)
+            redirect_url = "/?display_page=comments"
+
+        self.redirect(redirect_url)
 		
 				
 app = webapp2.WSGIApplication([("/", MainPage),
                                ("/addblogentry", AddHandler)
-
                               ])

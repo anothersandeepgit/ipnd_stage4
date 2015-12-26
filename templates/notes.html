@@ -1,9 +1,14 @@
+
+{% extends "notes_base.html" %}
+
+{% block content %}
+
 <!DOCTYPE html>
 <html >
   <head>
     <meta charset="UTF-8">
     <title>Webpage development</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href='/stylesheets/style.css' >
   </head>
   <body>
 
@@ -826,11 +831,16 @@
 			besides other entries, to specify static files add the following 
 			types of lines:
 				handlers:
+				- url: /stylesheets
+  				static_dir: stylesheets
 				- url: /favicon\.ico
 				static_files: favicon.ico
 				upload: favicon\.ico
 
+
 		in the same folder
+		NOTE: After specifying rule for "stylesheets" put the style in /stylesheets folder
+			and refer to a "style.css" file in HTML header section as "/stylesheets/style.css"
 
 		admin Desktop $ dev_appserver.py helloworld/
 
@@ -900,6 +910,7 @@
 		https://realpython.com/blog/python/primer-on-jinja-templating/
 		https://cloud.google.com/appengine/docs/python/gettingstartedpython27/templates
 		http://jinja.pocoo.org/docs/dev/
+
 	jinja2 
 		- template engine/library builtin to Google App Engine (jinja.pocoo.org)
 		- used to generate/render HTML string
@@ -924,41 +935,45 @@
 		variable substitution:  {{ variable_name }}  
 					#like &quot;print&quot; but ignored if undefined
 		statement syntax (general form):
-			{% statement %}
+			{{ '{%' }} statement {{ '%}' }}
 				--output--
-			{% endstatement %}
+			{{ '{%' }} endstatement {{ '%}' }}
 		ex: 
-			{% if name == &quot;myname&quot; %}
+			{{ '{%' }} if name == &quot;myname&quot; {{ '%}' }}
 				--my output--
-			{% elif name == &quot;yourname&quot; %}
+			{{ '{%' }} elif name == &quot;yourname&quot; {{ '%}' }}
 				--your output--
-			{% else %}
+			{{ '{%' }} else {{ '%}' }}
 				--other output--
-			{% endif %}
+			{{ '{%' }} endif {{ '%}' }}
 			-----------------------------------
-			{% for item in items %}   # or {% for item in range(, n) %}...
-				&lt;li&gt;{{ item }}
-			{% endfor %}
-			{{ item | escape }} 	
+
+			{{ '{%' }} for item in items {{ '%}' }}   # or {{ '{%' }} for item in range(, n) {{ '%}' }}...
+				&lt;li&gt;{{ '{{' }} item {{ '}}' }}
+			{{ '{%' }} endfor {{ '%}' }}
+			{{ '{{' }} item | escape {{ '}}' }} 	
 				# to escape &quot;&amp;lt;, &amp;gt;, &quot;, &amp;&quot; in the variable item
-			{{variable | safe}}     # to leave HTML in variable alone
+			{{ '{{' }}variable | safe{{ '}}' }}     # to leave HTML in variable alone
 			template inheritence: //child.html derives from a base.html
 			base.html	
 				&lt;html&gt;
 				...
 				&lt;body&gt;
 				...
-					{% block somecontent %}
-					{% endsomeblock %}
+					{{ '{%' }} block somecontent {{ '%}' }}
+					{{ '{%' }} endsomeblock {{ '%}' }}
 				...
 				&lt;/body&gt;
 				&lt;/html&gt;
 			child.html
-				{{% extends &quot;base.html&quot; %}}
-				{{% block somecontent %}}
+				{{ '{%' }} extends &quot;base.html&quot; {{ '%}' }}
+				{{ '{%' }} block somecontent {{ '%}' }}
 					--some HTML tags--
-				{{% endsomeblock %}}
+				{{ '{%' }} endsomeblock {{ '%}' }}
 				
+			to prevents Jinja2 operators from being interpreted (jinja2 escaping):
+				{{ '{{'}} '{{ '{{'}}' {{ '}}'}}   #similarly for other jinja2 opertors
+
 			then in .py file load and use &quot;base.html&quot;
 				<pre>
 			</div>
@@ -1069,3 +1084,5 @@
 	
   </body>
 </html>
+
+{% endblock %}
