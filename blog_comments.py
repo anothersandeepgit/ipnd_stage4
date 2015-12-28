@@ -92,5 +92,4 @@ class AddHandler(webapp2.RequestHandler):
 				
 app = webapp2.WSGIApplication([("/", MainPage),
                                ("/addblogentry", AddHandler)
-                              ],
-                               debug=True)
+                              ])
