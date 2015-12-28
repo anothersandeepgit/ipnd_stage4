@@ -899,13 +899,81 @@
 				</pre>
 			</div>
     	</div>
-		<div class="concept">
+
+    	<div class="concept">
     		<div class="concept-title">
-				4.6 HTML Templates
+				4.6 Validation (Server Side)
 			</div>
     		<div class="concept-description">
 				<pre>
-	helps avoid repetition in HTML
+	Server side validation is important for two reasons:
+		Site Security: 
+			User can type HTML special characters as part of their Form inputs. 
+			These characters ('<', '>', '"', '&') if entered by users should 
+			normally not be interpreted, especially if the Server Side 
+			application needs to send this data back to the browser for further 
+			user editing or reviewing.. These can be interpreted by the browser 
+			and so can mess-up the HTML form in unpredictable ways depending on 
+			which tags were entered, where, and how many. 
+			
+			Even if a regular user plays by the rules, a malicious user can 
+			create his own Form with malicious data and submit to our Server 
+			Side Application. This is also a case against relying completely 
+			on Client Side validation alone, as it can be bypassed by malicious 
+			users. In addition regular users can turn-off Client-side validation 
+			in their browser configuration.
+
+			An even more destructive effect can be if the user input is used to 
+			make queries to a Backend Database. A carefully crafted user input 
+			can result in undesirable queries which can generate results for 
+			user that he is not authorized to get. This is called "SQL Injection".
+
+		Improved User experience: 
+			Especially when users have to enter long string as input, they are 
+			likely to make mistake as they continue typing in the string. 
+			Validation can enable us to accept an input evven if it not 
+			completely correct, if our logic can figure out user intent. 
+			For example the first three letters of a complete string specifying 
+			a month of year can be sufficient to be accepted as a valid input.
+
+
+			HTML escaping (replacing with equivalents as follows: 
+			'&lt;' -> '&amp;lt;', '&gt;' -> '&amp;gt;', '&quot;' -> '&amp;quot;', '&amp;' -> '&amp;amp;'
+			is used to ensure browsers do not interpret these HTML special characters 
+			and render their values. 
+			A technique to do this on a user provided string called "user_input_string":
+
+			import cgi
+			escaped_user_input_string = cgi.escape(user_input_string)
+
+				</pre>
+			</div>
+    	</div>
+
+		<div class="concept">
+    		<div class="concept-title">
+				4.7 HTML Templates
+			</div>
+    		<div class="concept-description">
+				<pre>
+	-HTML templates allow Server Side developers to: 
+		-separate HTML and Python code into separate files making it easier to modify/debug 
+			both and make both less error-prone. Goal should be to minimize HTML in Python  
+			code and to minimize code-like constructs in HTML template files. 	
+		-Having a separate HTML template file allows us to take advantage of using HTML editing 
+			features such as syntax highlighting which Python editor does not provide.
+		-helps avoid repetition in HTML by the use of variable substitution in template files
+			whose values are supplied by the Python code. So the same template file can
+			result in different final HTML page depending on the values supplied by the
+			Web Appliction Python code. Also through the use of "extends" and "include" 
+			syntax of HTML template engines portions of HTML files can be reused in generating
+			different resulting composite HTML page. This feature can be used to use the same 
+			"Headers" and "Footers" in multiple pages for example.
+			-Avoiding repetition is a recurring feature of programming because
+				it allows changes made in one place to get consistently applied everywhere, hence
+				reducing coding time, and avoid the error due to failure of making a change in all 
+				places necessary thus reducing debugging effort.
+			
 	More articles/docs for HTML Templates:
 		https://realpython.com/blog/python/primer-on-jinja-templating/
 		https://cloud.google.com/appengine/docs/python/gettingstartedpython27/templates
@@ -913,7 +981,7 @@
 
 	jinja2 
 		- template engine/library builtin to Google App Engine (jinja.pocoo.org)
-		- used to generate/render HTML string
+		- used to generate/render HTML string (or any complicated string in general)
 		
 		-needs to be specified in app.yaml under &quot;libraries:&quot; section
 		-name: jinja2
@@ -924,6 +992,7 @@
 		import os
 		template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 		jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir))
+			//****Recommended alternative:*****
 			//2nd arg above for global auto HTML escaping:  autoescape=True
 			//thereafter to specifically disable escaping:   {{ item | safe}}
 		template = jinja_env.get_template(&lt;template_file_name&gt;.html)
@@ -981,7 +1050,7 @@
 		
 		<div class="concept">
     		<div class="concept-title">
-				4.7 Databases
+				4.8 Databases
 			</div>
     		<div class="concept-description">
 				<pre>
@@ -1023,7 +1092,7 @@
 		
 		<div class="concept">
     		<div class="concept-title">
-				4.8 Google App Engine Datastore:
+				4.9 Google App Engine Datastore:
 			</div>
     		<div class="concept-description">
 				<pre>

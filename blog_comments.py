@@ -10,7 +10,8 @@ import time
 
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
-jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir))
+jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir), 
+                                autoescape = True)
 
 class Blogentry(ndb.Model):
     """docstring for Blogentry"""
@@ -18,8 +19,19 @@ class Blogentry(ndb.Model):
     username = ndb.StringProperty()
     date = ndb.DateTimeProperty(auto_now_add=True)
         
+class Handler(webapp2.RequestHandler):
+    def write(self, *a, **kw):
+        self.response.write(*a, **kw)
 
-class MainPage(webapp2.RequestHandler):
+    def render_str(self, template, **params):
+        t = jinja_env.get_template(template)
+        return t.render(params)
+
+
+    def render(self, template, **kw):
+        self.write(self.render_str(template, **kw))
+
+class MainPage(Handler):
     def get(self):
         page2get = self.request.GET.getall('display_page')
 
@@ -52,8 +64,7 @@ class MainPage(webapp2.RequestHandler):
             template_values = {}
             display_page = "notes.html"
             
-        t2 = jinja_env.get_template(display_page)
-        self.response.write(t2.render(template_values))
+        self.render(display_page, template_values = template_values)
 
 class AddHandler(webapp2.RequestHandler):
     def post(self):
@@ -81,4 +92,5 @@ class AddHandler(webapp2.RequestHandler):
 				
 app = webapp2.WSGIApplication([("/", MainPage),
                                ("/addblogentry", AddHandler)
-                              ])
+                              ],
+                               debug=True)
